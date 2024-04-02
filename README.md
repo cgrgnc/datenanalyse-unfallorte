@@ -26,3 +26,7 @@ Mit dem Tool zur Erstellung von Rastern können Raster auf dem Berliner Polygon 
 
 ## 5. Darstellung der Ergebnnissen
 Das Feld NUMBERPOINTS zeigt, dass die Anzahl der Unfälle zwischen den Gitterzellen zwischen 10 und 650 variiert. Mit dem Symbology-Tool und entsprechenden Abfragen können wir die Ergebnisse der durchgeführten Analyse deutlich visualisieren.
+
+![clipped-data](./images/clipped-data.png)
+![grid_applied](./images/grid_applied.png)
+![result](./images/result.png)
