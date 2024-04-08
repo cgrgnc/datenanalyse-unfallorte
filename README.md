@@ -1,20 +1,21 @@
 # Praxisbezogene geographische Datenanalyse: Visuelle Analyse der Unfallhäufigkeiten in Berlin 2022 nach Zonen
 
 ## 1. Erwerb von Open-Source-Daten
-Die Daten zu Unfallorten für das Jahr 2022 in Deutschland im Shapefile-Format und die Berliner Stadtgrenzen im GeoJSON-Format wurden als Open Source / zur freien Nutzung erworben. Die Shapefile-Daten für ganz Deutschland befinden sich nicht im GitHub-Code, da sie eine Datengröße von 1,2 GB haben.
+Die Daten zu Unfallorten für das Jahr 2022 in Deutschland im Shapefile-Format und die Berliner Stadtgrenzen im GeoJSON-Format wurden als Open Source / zur freien Nutzung erworben. Die Shapefile-Daten für ganz Deutschland befinden sich nicht im GitHub, da sie eine Datengröße von 1,2 GB haben.
 
 ## 2. Angleichung der Koordinatensysteme
 Die erworbenen Daten (Unfallorte.shp) waren im UTM32-Koordinatensystem, während die Berliner Stadtgrenze im WGS84-Koordinatensystem vorlag. Um die Daten gemeinsam verarbeiten zu können, wurden die Stadtgrenzendaten in das UTM32-Koordinatensystem konvertiert. Dies wurde in QGIS durchgeführt, indem die Features im UTM32-Koordinatensystem exportiert wurden.
 
 ## 3. Import der Daten in eine PostgreSQL-Datenbank
-Die räumlichen Daten können mittels PostGIS in eine PostgreSQL-Datenbank importiert werden. Dafür ist eine Konvertierung vom Shapefile in SQL erforderlich.
+Die räumlichen Daten können durch PostGIS in eine PostgreSQL-Datenbank importiert werden. Dafür ist eine Konvertierung vom Shapefile in SQL erforderlich.
 ```bash
 shp2pgsql -s 25382 -I Unfallorte.shp public.Unfallorte | psql -U postgres -d accident_places
 ```
 -s 25832 definiert Koordinatensystem nach EPSG Nummer von Input Daten
+
 -d accident_places ist Datenbankname in PostgreSQL
 
-Nach dem Import können nun alle Felder erreicht werden, um die Daten zu verstehen.
+Nach dem Import können nun alle Felder erreicht werden.
 ```sql
 SELECT column_name, data_type
 FROM information_schema.columns
